@@ -1,0 +1,46 @@
+.course-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-template-columns: repeat(3, 1fr); */
+  place-items: center;
+  gap: 1rem;
+}
+.course-cards {
+  min-width: 300px;
+  width: auto;
+  max-width: 1000px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.add-course {
+  display: grid;
+  height: auto;
+  place-items: center;
+  height: 60vh;
+}
+.add-course-container {
+  width: 250px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.add-course-container h3 {
+  background-color: rgb(50, 150, 213);
+  border-radius: 5px;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 0;
+  color: white;
+}
+.add-course-container form {
+  padding: 1rem;
+  display: grid;
+}
+.notice-title {
+  background-color: rgb(50, 150, 213);
+  color: white;
+  padding: 1rem;
+}
+.notice-desc {
+  padding: 1rem;
+}

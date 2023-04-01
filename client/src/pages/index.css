@@ -1,0 +1,289 @@
+body {
+  background-color: rgb(241, 241, 241);
+}
+
+.header img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+
+.contact-h {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.contact {
+  display: grid;
+  place-items: center;
+  /* height: 70vh; */
+  margin-top: 1rem;
+}
+
+.contact form {
+  padding: 2rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: grid;
+  background-color: white;
+  width: 400px;
+  border-radius: 5px;
+}
+
+.contact form input {
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.contact form label {
+  margin-top: 1rem;
+}
+
+.contact form button {
+  margin-top: 1rem;
+  background-color: rgb(50, 150, 213);
+  border: none;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: large;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-evenly;
+  width: 100%;
+  place-items: center;
+}
+
+.flex img {
+  height: 400px;
+  width: 600px;
+  object-fit: cover;
+}
+
+.footer {
+  margin-top: 1rem;
+  padding-block: 2rem;
+  background-color: rgb(17, 14, 14);
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+  height: auto;
+  width: 100%;
+  justify-content: space-evenly;
+  place-items: center;
+  height: 40vh;
+}
+
+.footer div {
+  width: 300px;
+}
+
+.footer a {
+  color: white;
+}
+
+.social {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.4rem;
+  color: rgb(199, 196, 196);
+  font-size: 30px;
+}
+
+.quick-link {
+  display: grid;
+  margin-top: 0.5rem;
+  color: rgb(199, 196, 196);
+}
+
+.contact-info {
+  color: rgb(199, 196, 196);
+}
+
+.last {
+  width: 100%;
+  background-color: black;
+  text-align: center;
+  color: white;
+  padding-block: 0.5rem;
+}
+
+.about {
+  display: flex;
+  width: 100%;
+  place-items: center;
+  gap: 2rem;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.about-info {
+  width: 400px;
+}
+
+.about img {
+  height: 400px;
+  width: 600px;
+  object-fit: cover;
+}
+
+.about-tittle {
+  text-align: center;
+  margin-block: 2rem;
+}
+
+.index-course {
+  /* height: 40vh; */
+  display: grid;
+  place-items: center;
+}
+
+.index-course h1 {
+  text-align: center;
+  margin-block: 2rem;
+}
+
+.coursesss {
+  display: flex;
+  flex-wrap: wrap;
+  place-items: center;
+  justify-content: space-evenly;
+  /* width: 88%; */
+  /* margin-inline: auto; */
+}
+
+.course-card img {
+  height: 200px;
+  width: 500px;
+}
+
+.course-card {
+  width: 564px;
+  border-radius: 5px;
+  /* height: 150px; */
+  margin-inline: 0.5rem;
+  padding: 2rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: grid;
+  margin-bottom: 1rem;
+}
+
+.course-card .content {
+  padding-block: 1rem;
+}
+
+.course-card .content p {
+  margin-bottom: 1rem !important;
+}
+
+.course-card-link {
+  /* margin-block: 1rem; */
+  /* padding: 1rem; */
+  padding-inline: 1.5rem;
+  padding-block: 0.3rem;
+  color: white;
+  background-color: rgb(73, 72, 72);
+  border-radius: 5px;
+  transition: all 250ms ease-in-out;
+}
+
+.course-card-link:hover {
+  background-color: black;
+}
+
+.singin-page {
+  height: 60vh;
+}
+
+.box-signin {
+  margin-block: 3rem;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 2rem;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.css-binzgt {
+  margin-top: 0 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .coursesss {
+    display: flex;
+    flex-wrap: wrap;
+    place-items: center;
+    justify-content: space-evenly;
+    /* width: 88%; */
+    /* margin-inline: auto; */
+  }
+
+  .course-card {
+    width: 364px;
+  }
+
+  .course-card img {
+    width: 300px;
+  }
+}
+
+.lable-input {
+  display: grid;
+}
+
+.lable-input input,
+.lable-input select {
+  padding: 0.3rem;
+  margin-bottom: 0.8rem;
+  height: 40px;
+  /* background-color: rgb(230, 230, 230); */
+  border-radius: 5px;
+  border: 0.5px solid rgb(203, 203, 203);
+}
+.form-container button {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(73, 72, 72);
+  color: white;
+  transition: all 250ms ease-in-out;
+  width: 100%;
+}
+.form-container button:hover {
+  background-color: black;
+}
+.form-container a {
+  margin-top: 0.5rem;
+}
+
+.bms {
+  margin: 1rem 4rem;
+}
+.bms .for-table {
+  display: grid;
+  place-items: center;
+}
+.bms .table1 {
+  margin-block: 1rem;
+  background-color: rgb(238, 238, 238);
+  border-collapse: collapse;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.bms .table1 tr td {
+  border: 1px solid black;
+  padding: 1rem;
+  text-align: center;
+}
+.eligibility {
+  margin-block: 1rem;
+}
+.login-singup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
