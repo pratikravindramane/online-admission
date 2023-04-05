@@ -7,5 +7,6 @@ const userSchema = new mongoose.Schema({
   gender: { type: String },
   dob: { type: Date },
   payment: { type: Boolean, default: false },
+  fees: { type: Boolean, default: false },
 });
 export const User = mongoose.model("user", userSchema);

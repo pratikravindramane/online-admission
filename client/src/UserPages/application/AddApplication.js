@@ -39,8 +39,8 @@ const AddApplication = () => {
     }
   }, [refresh]);
   useEffect(() => {
-    if (credentials.course === "BScIT") {
-      setMath("hello");
+    if (credentials.course === "BScIT" || credentials.course === "BScCS") {
+      setMath(true);
     } else {
       setMath(false);
     }

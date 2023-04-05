@@ -3,6 +3,7 @@ import express from "express";
 import {
   addApplication,
   document,
+  fees,
   getApplication,
   getNotice,
   getStatus,
@@ -82,4 +83,5 @@ router.get("/:id", getUser);
 router.get("/notice", getNotice);
 router.get("/status/:id", getStatus);
 router.get("/payment/:id", payment);
+router.put("/fees/:id", fees);
 export default router;

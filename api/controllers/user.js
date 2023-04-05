@@ -134,3 +134,15 @@ export const payment = async (req, res) => {
     res.send({ error: error });
   }
 };
+
+// fees
+export const fees = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, {
+      $set: { fees: true },
+    });
+    res.send({ msg: "fees paid" });
+  } catch (error) {
+    res.send({ error: error });
+  }
+};
