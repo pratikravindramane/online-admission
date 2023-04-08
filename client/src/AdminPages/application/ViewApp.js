@@ -163,6 +163,9 @@ function ViewApp() {
               <MenuItem value="Pending" id="Pending">
                 Pending
               </MenuItem>
+              <MenuItem value="approved" id="approved">
+                Approved
+              </MenuItem>
             </TextField>
             <form ref={form} className="form-hide">
               <label>Name</label>

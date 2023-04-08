@@ -27,10 +27,13 @@ function Status() {
         if (application.status === "pending") {
           setTheme("warning");
         } else if (application.status === "selected") {
-          setPay(true);
+          // setPay(true);
           setTheme("success");
         } else if (application.status === "rejected") {
           setTheme("error");
+        } else if (application.status === "approved") {
+          setPay(true);
+          setTheme("success");
         }
         setApp(application);
       } catch (error) {

@@ -26,7 +26,6 @@ const upload = multer({
 });
 
 router.post("/aadhar/:id", upload.single("doc"), async (req, res) => {
-  res.send(req.file);
   try {
     if (req.file) {
       const application = await Application.findOne({ userId: req.params.id });
@@ -40,7 +39,6 @@ router.post("/aadhar/:id", upload.single("doc"), async (req, res) => {
   }
 });
 router.post("/ssc/:id", upload.single("doc"), async (req, res) => {
-  res.send(req.file);
   try {
     if (req.file) {
       const application = await Application.findOne({ userId: req.params.id });
@@ -54,12 +52,26 @@ router.post("/ssc/:id", upload.single("doc"), async (req, res) => {
   }
 });
 router.post("/hsc/:id", upload.single("doc"), async (req, res) => {
-  res.send(req.file);
   try {
     if (req.file) {
       const application = await Application.findOne({ userId: req.params.id });
       application.hsc = req.file.path;
       const update = await application.save();
+      res.send(update);
+    }
+  } catch (error) {
+    // res.send(error.message);
+    console.log(error.message);
+  }
+});
+router.post("/profile/:id", upload.single("profile"), async (req, res) => {
+  console.log(req.file);
+  try {
+    if (req.file) {
+      const application = await Application.findOne({ userId: req.params.id });
+      application.profile = req.file.path;
+      const update = await application.save();
+      console.log(update);
       res.send(update);
     }
   } catch (error) {
@@ -76,7 +88,7 @@ router.get("document/:id", async (req, res) => {
     res.send({ hsc, ssc, aadhar });
   } catch (error) {}
 });
-router.post("/add-application", upload.single("doc"), addApplication);
+router.post("/add-application", upload.single("profile"), addApplication);
 router.get("/application/:id", getApplication);
 router.post("/document/:id", upload.single("doc"), document);
 router.get("/:id", getUser);

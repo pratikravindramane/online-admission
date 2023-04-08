@@ -1,5 +1,5 @@
 import Layout from "../../utils/Layout";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/User";
@@ -21,6 +21,8 @@ const AddApplication = () => {
   });
   const [show, setShow] = useState();
   const [refresh, setRefresh] = useState();
+  const [profile, setProfile] = useState();
+  const [profileInput, setProfileInput] = useState();
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -48,17 +50,22 @@ const AddApplication = () => {
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      const formData = new FormData();
+      formData.append("profile", profileInput);
       const response = await axios.post(
         "http://localhost:5000/user/add-application",
-        { ...credentials }
+        { ...credentials, formData }
       );
+      console.log(formData);
       if (response.data.error) {
         alert(response.data.error);
       } else {
         alert("Application Submited");
+        setProfile(true);
         emailjs
           .sendForm(
             "service_7xopafq",
@@ -128,10 +135,36 @@ const AddApplication = () => {
     }
   };
   const currentDate = new Date().toDateString();
+  const ProfileSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("profile", profileInput);
+      const res = await axios.post(
+        `http://localhost:5000/user/profile/${user._id}`,
+        formData
+      );
+      alert("successfull uploaded");
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   console.log(credentials);
   return (
     <Layout>
+      {/* {!profile ? ( */}
       <form onSubmit={submitHandler}>
+        {/* <div className="lable-input">
+            <TextField
+              type="file"
+              helperText="Ssc Certificate"
+              onChange={(e) => {
+                setProfileInput(e.target.files[0]);
+                console.log(e.target.files[0]);
+              }}
+            />
+          </div> */}
         <div className="lable-input">
           <label htmlFor="name">Name</label>
           <input
@@ -230,7 +263,10 @@ const AddApplication = () => {
           <select
             id="category"
             onChange={(e) =>
-              setCredentials((prev) => ({ ...prev, category: e.target.value }))
+              setCredentials((prev) => ({
+                ...prev,
+                category: e.target.value,
+              }))
             }
           >
             <option selected value="null">
@@ -332,6 +368,21 @@ const AddApplication = () => {
         )}
         {show && <Button type="submit">Submit</Button>}
       </form>
+      {/* // ) : (
+      //   <form
+      //     onSubmit={ProfileSubmit}
+      //     sx={{
+      //       "& .MuiTextField-root": { m: 1, width: "25ch" },
+      //     }}
+      //   >
+      //     <TextField
+      //       type="file"
+      //       helperText="Ssc Certificate"
+      //       onChange={(e) => setProfileInput(e.target.files[0])}
+      //     />
+      //     <Button type="submit">Submit</Button>
+      //   </form>
+      // )} */}
     </Layout>
   );
 };

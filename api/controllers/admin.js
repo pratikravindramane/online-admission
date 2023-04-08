@@ -52,6 +52,16 @@ export const getRejected = async (req, res) => {
     res.status(400).json(error.message);
   }
 };
+// get approved request
+export const getApproved = async (req, res) => {
+  try {
+    const application = await Application.find({ status: "approved" });
+    res.status(200).json(application);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json(error.message);
+  }
+};
 // update status
 export const putStatus = async (req, res) => {
   try {

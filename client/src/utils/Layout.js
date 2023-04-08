@@ -16,6 +16,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 import { AuthContext } from "../context/User";
 import {
   Accordion,
@@ -179,6 +180,14 @@ function Layout(props) {
                         <ThumbDownIcon />
                       </ListItemIcon>
                       <Link to="/rejected">Rejected</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <HowToRegIcon />
+                      </ListItemIcon>
+                      <Link to="/approved">Approved</Link>
                     </ListItemButton>
                   </ListItem>
                 </AccordionDetails>
@@ -427,6 +436,14 @@ function Layout(props) {
                         <ThumbDownIcon />
                       </ListItemIcon>
                       <Link to="/rejected">Rejected</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <HowToRegIcon />
+                      </ListItemIcon>
+                      <Link to="/approved">Approved</Link>
                     </ListItemButton>
                   </ListItem>
                 </AccordionDetails>

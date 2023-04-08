@@ -8,6 +8,7 @@ function UploadDoc() {
   const [aadhar, setAadhar] = useState();
   const [ssc, setSsc] = useState();
   const [hsc, setHsc] = useState();
+  const [profile, setProfile] = useState();
   const { user } = useContext(AuthContext);
   const aadharSubmit = async (e) => {
     e.preventDefault();
@@ -56,9 +57,38 @@ function UploadDoc() {
       console.log(err);
     }
   };
+  const profileSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("profile", profile);
+      const res = await axios.post(
+        `http://localhost:5000/user/profile/${user._id}`,
+        formData
+      );
+      alert("successfull uploaded");
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Layout>
       <Box>
+        <form
+          onSubmit={profileSubmit}
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+        >
+          {/* <label>profile</label> */}
+          <TextField
+            type="file"
+            helperText="Profile"
+            onChange={(e) => setProfile(e.target.files[0])}
+          />
+          <Button type="submit">Submit</Button>
+        </form>
         <form
           onSubmit={aadharSubmit}
           sx={{
@@ -72,7 +102,6 @@ function UploadDoc() {
           />
           <Button type="submit">Submit</Button>
         </form>
-
         <form
           onSubmit={sscSubmit}
           sx={{

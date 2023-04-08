@@ -32,7 +32,6 @@ export const addApplication = async (req, res) => {
       twelvePer,
       mathMark,
     } = req.body;
-    console.log(req.body);
 
     if (
       !name ||
@@ -62,7 +61,11 @@ export const addApplication = async (req, res) => {
     if (twelvePer > 100 || tenPer > 100) {
       return res.send({ error: "please enter the proper percentage" });
     }
-
+    // console.log(req.file);
+    // if (req.file) {
+    //   application.profile = req.file.path;
+    //   console.log(response);
+    // }
     const response = await application.save();
     res.send({
       message: "Send successfully",

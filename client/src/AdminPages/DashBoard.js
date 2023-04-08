@@ -59,6 +59,16 @@ function DashBoard() {
         </div>
         <div sx={{ maxWidth: 345 }} className="dash-card">
           <img
+            src="https://img.freepik.com/premium-vector/form-approved-visa-happy-people-keep-foreign-passport-students-will-study-another-country-crossing-border-concept_546563-284.jpg?w=2000"
+            alt=""
+          />
+          <div className="card-content">
+            <h3>Approved</h3>
+            <Link to="/approved">View</Link>
+          </div>
+        </div>
+        <div sx={{ maxWidth: 345 }} className="dash-card">
+          <img
             src="https://manavrachna.edu.in/wp-content/uploads/2019/03/mainpic.jpg"
             alt=""
           />

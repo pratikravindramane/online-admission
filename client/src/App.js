@@ -33,6 +33,7 @@ import Bms from "./pages/Bms";
 import Baf from "./pages/Baf";
 import It from "./pages/It";
 import Cs from "./pages/Cs";
+import Approved from "./AdminPages/application/Approved";
 function App() {
   const [login, setLogin] = useState(false);
   const [admin, setAdmin] = useState(false);
@@ -53,7 +54,7 @@ function App() {
       setLogin(false);
       setAdmin(false);
     }
-  }, []);
+  }, [login, admin, hod]);
 
   return (
     <div>
@@ -81,6 +82,7 @@ function App() {
             <Route path="/pending" element={<Pending />} />
             <Route path="/rejected" element={<Rejected />} />
             <Route path="/selected" element={<Selected />} />
+            <Route path="/approved" element={<Approved />} />
             <Route path="/view-app" element={<ViewApp />} />
             <Route path="/view-hod" element={<Hod />} />
             <Route path="/add-hod" element={<AddHod />} />

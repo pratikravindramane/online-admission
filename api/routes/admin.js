@@ -7,6 +7,7 @@ import {
   deleteCourse,
   deleteHod,
   deleteNotice,
+  getApproved,
   getCourse,
   getHod,
   getNotice,
@@ -23,6 +24,7 @@ router.get("/pending", getPending);
 router.put("/status/:id", putStatus);
 router.get("/selected", getSelected);
 router.get("/rejected", getRejected);
+router.get("/approved", getApproved);
 router.get("/course", getCourse);
 router.post("/course", addCourse);
 router.delete("/course/:id", deleteCourse);

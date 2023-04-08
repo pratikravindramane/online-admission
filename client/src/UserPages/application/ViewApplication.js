@@ -30,6 +30,10 @@ function ViewApplication() {
     <Layout>
       {app ? (
         <div className="view-app">
+          <div className="profile-img">
+            <h5>Profile</h5>
+            <img src={`http://localhost:5000/${app.profile}`} alt="" />
+          </div>
           <div className="container">
             <div>
               <h5>Full Name</h5>
