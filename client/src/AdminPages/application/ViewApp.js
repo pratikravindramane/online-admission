@@ -64,6 +64,10 @@ function ViewApp() {
     <Layout>
       {app && (
         <form className="view-app" onSubmit={submitHandler}>
+          <div className="profile-img">
+            <h5>Profile</h5>
+            <img src={`http://localhost:5000/${app.profile}`} alt="" />
+          </div>
           <div className="container">
             <div>
               <h5>Full Name</h5>
