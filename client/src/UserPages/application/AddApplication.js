@@ -58,7 +58,7 @@ const AddApplication = () => {
       formData.append("profile", profileInput);
       const response = await axios.post(
         "http://localhost:5000/user/add-application",
-        { ...credentials, formData }
+        { ...credentials, dob: user.dob }
       );
       console.log(formData);
       if (response.data.error) {
@@ -182,7 +182,7 @@ const AddApplication = () => {
           <label htmlFor="lName">Last Name</label>
           <input id="lName" type="text" onChange={handleChange} required />
         </div>
-        <div className="lable-input">
+        {/* <div className="lable-input">
           <label htmlFor="dob">Date of Birth</label>
           <input
             id="dob"
@@ -191,7 +191,7 @@ const AddApplication = () => {
             type="date"
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className="lable-input">
           <label htmlFor="nationality">Nationality</label>
 
@@ -304,7 +304,7 @@ const AddApplication = () => {
             type="date"
             onChange={handleChange}
             max="2019-01-04"
-            min="2010-01-04"
+            // min="2010-01-04"
           />
         </div>
         <div className="lable-input">
@@ -313,7 +313,7 @@ const AddApplication = () => {
             id="tenPer"
             pattern="[0-9]{2}"
             maxLength={2}
-            max="100"
+            max="99"
             min="35"
             required
             type="number"
@@ -331,7 +331,7 @@ const AddApplication = () => {
             type="date"
             required
             onChange={handleChange}
-            min="2012-01-04"
+            // min="2012-01-04"
             max="2022-01-04"
           />
         </div>
@@ -344,7 +344,7 @@ const AddApplication = () => {
             maxLength={2}
             required
             min="35"
-            max="100"
+            max="99"
             onChange={handleChange}
           />
         </div>
