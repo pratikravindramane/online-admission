@@ -36,7 +36,7 @@ const AddApplication = () => {
       }
     };
     fetch();
-    if (localStorage.getItem("payment")) {
+    if (user.payment) {
       setShow(true);
     }
   }, [refresh]);

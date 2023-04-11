@@ -50,6 +50,7 @@ export default function AllApplication() {
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
+              <TableCell align="right">Email</TableCell>
               <TableCell align="right">Course</TableCell>
               <TableCell align="right">Gender</TableCell>
               <TableCell align="right">10 Percentage</TableCell>
@@ -67,6 +68,7 @@ export default function AllApplication() {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
+                <TableCell align="right">{row.email}</TableCell>
                 <TableCell align="right">
                   {row.course}
                   {row.mathMark && <p>Math = {row.mathMark}</p>}
