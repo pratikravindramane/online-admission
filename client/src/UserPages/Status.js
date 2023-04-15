@@ -11,6 +11,8 @@ function Status() {
   const [theme, setTheme] = useState();
   const [fees, setFees] = useState(false);
   const [pay, setPay] = useState(false);
+  const [amount, setAmount] = useState();
+  const [text, setText] = useState();
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -24,6 +26,10 @@ function Status() {
           setError(data.data.error);
         }
         const application = data.data.application;
+        if (!application) {
+          setTheme("warning");
+          setText("Please Fill the Application to get your Status");
+        }
         if (application.status === "pending") {
           setTheme("warning");
         } else if (application.status === "selected") {
@@ -32,6 +38,15 @@ function Status() {
         } else if (application.status === "rejected") {
           setTheme("error");
         } else if (application.status === "approved") {
+          if (application.course === "BScIT") {
+            setAmount("32,570");
+          } else if (application.course === "BScCS") {
+            setAmount("33,900");
+          } else if (application.course === "BMS") {
+            setAmount("28,420");
+          } else if (application.course === "BAF") {
+            setAmount("35,430");
+          }
           setPay(true);
           setTheme("success");
         }
@@ -50,7 +65,7 @@ function Status() {
   const initPayment = (data) => {
     const options = {
       key: "rzp_test_Eq3gnPcqCuq0H8",
-      amount: 30000,
+      amount: amount,
       currency: "INR",
       name: "Anshuman",
       description: "Test Transaction",
@@ -82,7 +97,7 @@ function Status() {
     e.preventDefault();
     try {
       const orderUrl = "http://localhost:5000/payment/";
-      const { data } = await axios.post(orderUrl, { amount: 30000 });
+      const { data } = await axios.post(orderUrl, { amount: amount });
       console.log(data);
       initPayment(data.data);
     } catch (error) {
@@ -91,8 +106,10 @@ function Status() {
   };
   return (
     <Layout>
-      <Alert severity={theme}>Your appliation is {app && app.status}</Alert>
-      <h1>Fees for 1st Year 30000rs</h1>
+      <Alert severity={theme}>
+        Your appliation is {app ? app.status : "pending"}
+      </Alert>
+      <h1>{app ? `Fees for 1st Year ${amount}rs` : text}</h1>
       {pay && !fees && (
         <>
           <button onClick={handlePayment} className="buy_btn">
