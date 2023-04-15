@@ -26,6 +26,7 @@ export default function SignUp() {
       if (response.data.error) {
         alert(response.data.error);
       } else {
+        alert("Registered successfully");
         navigate("/login");
       }
     } catch (error) {
