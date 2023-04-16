@@ -216,6 +216,38 @@ function Layout(props) {
                   <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
+                        <VisibilityIcon />
+                      </ListItemIcon>
+                      <Link to="/bscit">BScIT</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <VisibilityIcon />
+                      </ListItemIcon>
+                      <Link to="/bsccs">BScCs</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <VisibilityIcon />
+                      </ListItemIcon>
+                      <Link to="/a-baf">BAF</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <VisibilityIcon />
+                      </ListItemIcon>
+                      <Link to="/a-bms">BMS</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
                         <AddIcon />
                       </ListItemIcon>
                       <Link to="/add-course">Add Course</Link>
@@ -263,7 +295,7 @@ function Layout(props) {
                   <ListItemIcon>
                     <AccountBoxIcon />
                   </ListItemIcon>
-                  <Typography>HOD</Typography>
+                  <Typography>Co-ordinator</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <ListItem disablePadding>
@@ -271,7 +303,7 @@ function Layout(props) {
                       <ListItemIcon>
                         <VisibilityIcon />
                       </ListItemIcon>
-                      <Link to="/view-hod">HOD</Link>
+                      <Link to="/view-hod">Co-ordinator</Link>
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
@@ -279,7 +311,7 @@ function Layout(props) {
                       <ListItemIcon>
                         <AddIcon />
                       </ListItemIcon>
-                      <Link to="/add-hod">Add HOD</Link>
+                      <Link to="/add-hod">Add Co-ordinator</Link>
                     </ListItemButton>
                   </ListItem>
                 </AccordionDetails>
@@ -472,6 +504,38 @@ function Layout(props) {
                   <ListItem disablePadding>
                     <ListItemButton>
                       <ListItemIcon>
+                        <VisibilityIcon />
+                      </ListItemIcon>
+                      <Link to="/bscit">BScIT</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <VisibilityIcon />
+                      </ListItemIcon>
+                      <Link to="/bsccs">BScCs</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <VisibilityIcon />
+                      </ListItemIcon>
+                      <Link to="/a-baf">BAF</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
+                        <VisibilityIcon />
+                      </ListItemIcon>
+                      <Link to="/a-bms">BMS</Link>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <ListItemIcon>
                         <AddIcon />
                       </ListItemIcon>
                       <Link to="/add-course">Add Course</Link>
@@ -519,7 +583,7 @@ function Layout(props) {
                   <ListItemIcon>
                     <AccountBoxIcon />
                   </ListItemIcon>
-                  <Typography>HOD</Typography>
+                  <Typography>Co-ordinator</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <ListItem disablePadding>
@@ -527,7 +591,7 @@ function Layout(props) {
                       <ListItemIcon>
                         <VisibilityIcon />
                       </ListItemIcon>
-                      <Link to="/view-hod">HOD</Link>
+                      <Link to="/view-hod">Co-ordinator</Link>
                     </ListItemButton>
                   </ListItem>
                   <ListItem disablePadding>
@@ -535,7 +599,7 @@ function Layout(props) {
                       <ListItemIcon>
                         <AddIcon />
                       </ListItemIcon>
-                      <Link to="/add-hod">Add HOD</Link>
+                      <Link to="/add-hod">Add Co-ordinator</Link>
                     </ListItemButton>
                   </ListItem>
                 </AccordionDetails>

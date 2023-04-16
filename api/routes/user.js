@@ -1,5 +1,5 @@
 import multer from "multer";
-import express from "express";
+import express, { application } from "express";
 import {
   addApplication,
   document,
@@ -88,6 +88,22 @@ router.get("document/:id", async (req, res) => {
     res.send({ hsc, ssc, aadhar });
   } catch (error) {}
 });
+// router.get("/", async () => {
+//   try {
+//     const users = await User.find();
+//     const application = await Application.find();
+//     let filter = users.filter((element) => {
+//       application.filter((a) => {
+//         // console.log(element.id);
+//         console.log(a.userId);
+//         return element.id === a.userId;
+//       });
+//     });
+//     console.log(filter);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 router.post("/add-application", upload.single("profile"), addApplication);
 router.get("/application/:id", getApplication);
 router.post("/document/:id", upload.single("doc"), document);

@@ -8,12 +8,35 @@ function ViewApplication() {
   const [error, setError] = useState();
   const [app, setApp] = useState();
   const [docuement, setDocument] = useState();
+  const [text, setText] = useState();
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const fetchUser = await axios.get(
+          `http://localhost:5000/user/${user._id}`
+        );
+        if (!fetchUser.data.user.payment) {
+          alert("please pay the application fees");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  });
   useEffect(() => {
     const fetch = async () => {
       try {
         const data = await axios.get(
           `http://localhost:5000/user/application/${user._id}`
         );
+        const forDoc = data.data.application;
+
+        if (!forDoc.hsc || !forDoc.ssc || !forDoc.aadhar || !forDoc.profile) {
+          alert("Docuemnt upload remaining!");
+          // setText("Docuemnt upload remaining!");
+        }
+
         if (data.data.error) {
           setError(data.data.error);
         }
@@ -30,6 +53,7 @@ function ViewApplication() {
     <Layout>
       {app ? (
         <div className="view-app">
+          {text && <h1>{text}</h1>}
           <div className="profile-img">
             <h5>Profile</h5>
             <img src={`http://localhost:5000/${app.profile}`} alt="" />

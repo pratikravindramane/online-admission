@@ -4,12 +4,14 @@ import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/User";
 import emailjs from "@emailjs/browser";
+import { useNavigate } from "react-router-dom";
 
 const AddApplication = () => {
   const { user } = useContext(AuthContext);
   const [course, setCourse] = useState();
   const [math, setMath] = useState();
   const form = useRef();
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     userId: user._id,
     email: user.email,
@@ -19,10 +21,7 @@ const AddApplication = () => {
     dob: undefined,
     nationality: undefined,
   });
-  const [show, setShow] = useState();
   const [refresh, setRefresh] = useState();
-  const [profile, setProfile] = useState();
-  const [profileInput, setProfileInput] = useState();
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -36,9 +35,6 @@ const AddApplication = () => {
       }
     };
     fetch();
-    if (user.payment) {
-      setShow(true);
-    }
   }, [refresh]);
   useEffect(() => {
     if (credentials.course === "BScIT" || credentials.course === "BScCS") {
@@ -55,7 +51,6 @@ const AddApplication = () => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("profile", profileInput);
       const response = await axios.post(
         "http://localhost:5000/user/add-application",
         { ...credentials, dob: user.dob }
@@ -64,8 +59,8 @@ const AddApplication = () => {
       if (response.data.error) {
         alert(response.data.error);
       } else {
-        alert("Application Submited");
-        setProfile(true);
+        // alert("Application Submited");
+        navigate("/document");
         emailjs
           .sendForm(
             "service_7xopafq",
@@ -91,55 +86,54 @@ const AddApplication = () => {
     console.log("hello");
   };
 
-  const initPayment = (data) => {
-    const options = {
-      key: "rzp_test_Eq3gnPcqCuq0H8",
-      amount: 250,
-      currency: "INR",
-      name: "Anshuman",
-      description: "Test Transaction",
-      // image: book.img,
-      order_id: data.id,
-      handler: async (response) => {
-        try {
-          const verifyUrl = "http://localhost:5000/payment/verify";
-          const { data } = await axios.post(verifyUrl, response);
-          console.log(data);
-          const payment = await axios.get(
-            `http://localhost:5000/user/payment/${user._id}`
-          );
-          console.log(payment.data);
-          localStorage.setItem("payment", true);
-          setShow(true);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      theme: {
-        color: "#3399cc",
-      },
-    };
-    const rzp1 = new window.Razorpay(options);
-    rzp1.open();
-  };
+  // const initPayment = (data) => {
+  //   const options = {
+  //     key: "rzp_test_Eq3gnPcqCuq0H8",
+  //     amount: 250,
+  //     currency: "INR",
+  //     name: "Anshuman",
+  //     description: "Test Transaction",
+  //     // image: book.img,
+  //     order_id: data.id,
+  //     handler: async (response) => {
+  //       try {
+  //         const verifyUrl = "http://localhost:5000/payment/verify";
+  //         const { data } = await axios.post(verifyUrl, response);
+  //         console.log(data);
+  //         const payment = await axios.get(
+  //           `http://localhost:5000/user/payment/${user._id}`
+  //         );
+  //         console.log(payment.data);
+  //         localStorage.setItem("payment", true);
+  //         setShow(true);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     },
+  //     theme: {
+  //       color: "#3399cc",
+  //     },
+  //   };
+  //   const rzp1 = new window.Razorpay(options);
+  //   rzp1.open();
+  // };
 
-  const handlePayment = async (e) => {
-    e.preventDefault();
-    try {
-      const orderUrl = "http://localhost:5000/payment/";
-      const { data } = await axios.post(orderUrl, { amount: 250 });
-      console.log(data);
-      initPayment(data.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const handlePayment = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const orderUrl = "http://localhost:5000/payment/";
+  //     const { data } = await axios.post(orderUrl, { amount: 250 });
+  //     console.log(data);
+  //     initPayment(data.data);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
   const currentDate = new Date().toDateString();
   const ProfileSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("profile", profileInput);
       const res = await axios.post(
         `http://localhost:5000/user/profile/${user._id}`,
         formData
@@ -361,12 +355,7 @@ const AddApplication = () => {
             />
           </form>
         </div>
-        {!show && (
-          <button onClick={handlePayment} className="buy_btn">
-            Pay Now
-          </button>
-        )}
-        {show && <Button type="submit">Submit</Button>}
+        <Button type="submit">NEXT</Button>
       </form>
       {/* // ) : (
       //   <form

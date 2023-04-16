@@ -1,6 +1,6 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -10,9 +10,8 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AppContext } from "../../context/application";
 import { useNavigate } from "react-router-dom";
-import styled from "@emotion/styled";
 
-export default function AllApplication() {
+export default function BSCCS() {
   const [application, setApplication] = useState([
     { name: "random", course: "bscit", gender: "other", status: "pending" },
   ]);
@@ -26,7 +25,22 @@ export default function AllApplication() {
         const application = await axios.get(
           "http://localhost:5000/admin/all-application"
         );
+        const baf = application.data.filter((element) => {
+          return element.course === "BScCs";
+        });
+        setApplication(baf);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  }, []);
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const application = await axios.get("http://localhost:5000/user/");
         setApplication(application.data);
+        console.log(application.data);
       } catch (error) {
         console.log(error);
       }
@@ -36,6 +50,7 @@ export default function AllApplication() {
   const viewHandler = (e) => {
     try {
       dispatch({ type: "SAVE_ID", payload: e.target.id });
+      console.log(e.target.id);
       navigate("/view-app");
       // console.log(e.target.id);
       // console.log(id);
@@ -43,39 +58,20 @@ export default function AllApplication() {
       console.log(error.message);
     }
   };
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
   return (
     <Layout>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="customized table">
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
-              <TableCell align="left">Email</TableCell>
-              <TableCell align="left">Course</TableCell>
-              <TableCell align="left">Gender</TableCell>
-              <TableCell align="left">10 Percentage</TableCell>
-              <TableCell align="left">12 Percentage</TableCell>
-              <TableCell align="left">Status</TableCell>
-              <TableCell align="left">View</TableCell>
+              <TableCell align="center">Email</TableCell>
+              <TableCell align="right">Course</TableCell>
+              <TableCell align="right">Gender</TableCell>
+              <TableCell align="right">10 Percentage</TableCell>
+              <TableCell align="right">12 Percentage</TableCell>
+              <TableCell align="right">Status</TableCell>
+              <TableCell align="right">View</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -87,16 +83,16 @@ export default function AllApplication() {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="left">{row.email}</TableCell>
-                <TableCell align="left">
+                <TableCell align="center">{row.email}</TableCell>
+                <TableCell align="right">
                   {row.course}
                   {row.mathMark && <p>Math = {row.mathMark}</p>}
                 </TableCell>
-                <TableCell align="left">{row.gender}</TableCell>
-                <TableCell align="left">{row.tenPer} %</TableCell>
-                <TableCell align="left">{row.twelvePer} %</TableCell>
-                <TableCell align="left">{row.status}</TableCell>
-                <TableCell align="left" id={row._id} onClick={viewHandler}>
+                <TableCell align="right">{row.gender}</TableCell>
+                <TableCell align="right">{row.tenPer} %</TableCell>
+                <TableCell align="right">{row.twelvePer} %</TableCell>
+                <TableCell align="right">{row.payment}</TableCell>
+                <TableCell align="right" id={row._id} onClick={viewHandler}>
                   Edit
                 </TableCell>
               </TableRow>

@@ -34,6 +34,10 @@ import Baf from "./pages/Baf";
 import It from "./pages/It";
 import Cs from "./pages/Cs";
 import Approved from "./AdminPages/application/Approved";
+import BAF from "./AdminPages/application/Baf";
+import BSCCS from "./AdminPages/application/Bsccs";
+import BMS from "./AdminPages/application/Bms";
+import BSCIT from "./AdminPages/application/Bscit";
 function App() {
   const [login, setLogin] = useState(false);
   const [admin, setAdmin] = useState(false);
@@ -86,6 +90,10 @@ function App() {
             <Route path="/view-app" element={<ViewApp />} />
             <Route path="/view-hod" element={<Hod />} />
             <Route path="/add-hod" element={<AddHod />} />
+            <Route path="/a-baf" element={<BAF />} />
+            <Route path="/bsccs" element={<BSCCS />} />
+            <Route path="/a-bms" element={<BMS />} />
+            <Route path="/bscit" element={<BSCIT />} />
           </>
         )}
         {login && (

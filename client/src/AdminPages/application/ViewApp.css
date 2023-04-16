@@ -2,7 +2,8 @@
   display: grid;
   justify-content: space-evenly;
   padding: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  border: 1px solid black;
 }
 .container h5,
 .container p {

@@ -58,7 +58,7 @@ export default function HODLogin() {
           >
             {/* <LockOutlinedIcon /> */}
             <Typography component="h1" variant="h5">
-              HOD Login
+              Co-ordinator Login
             </Typography>
             <Box
               component="form"

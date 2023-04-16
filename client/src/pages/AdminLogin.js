@@ -109,7 +109,7 @@ export default function AdminLogin() {
                 </Grid>
                 <Grid item>
                   <Link to="/hod-login" variant="body2">
-                    {"HOD"}
+                    {"Co-ordinator"}
                   </Link>
                 </Grid>
               </Grid>

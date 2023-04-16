@@ -33,7 +33,7 @@ function AddHod() {
     <Layout>
       <div className="add-course">
         <div className="add-course-container">
-          <h3>Add Notice</h3>
+          <h3>Add Coordinator</h3>
           {error && error}
           <form onSubmit={addHandler}>
             <div className="lable-input">

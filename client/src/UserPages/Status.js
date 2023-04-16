@@ -13,6 +13,7 @@ function Status() {
   const [pay, setPay] = useState(false);
   const [amount, setAmount] = useState();
   const [text, setText] = useState();
+  const [feeText, setFeeText] = useState(false);
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -26,6 +27,9 @@ function Status() {
           setError(data.data.error);
         }
         const application = data.data.application;
+        if (application.course === "BAF") {
+          console.log("hello world");
+        }
         if (!application) {
           setTheme("warning");
           setText("Please Fill the Application to get your Status");
@@ -38,14 +42,16 @@ function Status() {
         } else if (application.status === "rejected") {
           setTheme("error");
         } else if (application.status === "approved") {
+          setFeeText(true);
           if (application.course === "BScIT") {
-            setAmount("32,570");
+            setAmount("32570");
           } else if (application.course === "BScCS") {
-            setAmount("33,900");
+            setAmount("33900");
           } else if (application.course === "BMS") {
-            setAmount("28,420");
-          } else if (application.course === "BAF") {
-            setAmount("35,430");
+            setAmount("28420");
+          } else if (application.course.include("BAF")) {
+            setAmount("hello");
+            console.log(amount);
           }
           setPay(true);
           setTheme("success");
@@ -56,7 +62,7 @@ function Status() {
       }
     };
     fetch();
-  }, [user._id]);
+  }, [amount, user._id]);
   useEffect(() => {
     if (user.fees) {
       setFees(true);
@@ -67,7 +73,7 @@ function Status() {
       key: "rzp_test_Eq3gnPcqCuq0H8",
       amount: amount,
       currency: "INR",
-      name: "Anshuman",
+      name: "Payment Gateway",
       description: "Test Transaction",
       // image: book.img,
       order_id: data.id,
@@ -109,7 +115,7 @@ function Status() {
       <Alert severity={theme}>
         Your appliation is {app ? app.status : "pending"}
       </Alert>
-      <h1>{app ? `Fees for 1st Year ${amount}rs` : text}</h1>
+      {feeText && <h1>{app ? `Fees for 1st Year ${amount}rs` : text}</h1>}
       {pay && !fees && (
         <>
           <button onClick={handlePayment} className="buy_btn">
