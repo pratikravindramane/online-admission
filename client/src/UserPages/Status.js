@@ -14,6 +14,21 @@ function Status() {
   const [amount, setAmount] = useState();
   const [text, setText] = useState();
   const [feeText, setFeeText] = useState(false);
+  const [installment, setInstallment] = useState();
+  const [installName, setInstallName] = useState();
+  const [fetchUser, setFetchUser] = useState();
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const users = await axios.get(`http://localhost:5000/user/${user._id}`);
+        setFetchUser(users.data.user);
+        console.log(users.data.user.finstall);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  }, []);
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -23,13 +38,11 @@ function Status() {
         const data = await axios.get(
           `http://localhost:5000/user/application/${user._id}`
         );
+
         if (data.data.error) {
           setError(data.data.error);
         }
         const application = data.data.application;
-        if (application.course === "BAF") {
-          console.log("hello world");
-        }
         if (!application) {
           setTheme("warning");
           setText("Please Fill the Application to get your Status");
@@ -44,14 +57,75 @@ function Status() {
         } else if (application.status === "approved") {
           setFeeText(true);
           if (application.course === "BScIT") {
-            setAmount("32570");
+            if (!user.finstall) {
+              setInstallment("First");
+              setInstallName("finstall");
+              setAmount("15000");
+            } else if (!user.sinstall) {
+              setInstallment("Second");
+              setInstallName("sinstall");
+              setAmount("10000");
+            } else if (!user.tinstall) {
+              setInstallment("Third");
+              setInstallName("tinstall");
+              setAmount("7500");
+            } else {
+              setFees(true);
+              setFeeText(false);
+            }
+            // setAmount("32570");
           } else if (application.course === "BScCS") {
-            setAmount("33900");
+            if (!user.finstall) {
+              setInstallName("finstall");
+              setInstallment("First");
+              setAmount("15000");
+            } else if (!user.sinstall) {
+              setInstallName("sinstall");
+              setInstallment("Second");
+              setAmount("9900");
+            } else if (!user.tinstall) {
+              setInstallment("Third");
+              setInstallName("tinstall");
+              setAmount("9000");
+            } else {
+              setFeeText(false);
+              setFees(true);
+            }
+            // setAmount("33900");
           } else if (application.course === "BMS") {
-            setAmount("28420");
+            if (!user.finstall) {
+              setInstallName("finstall");
+              setInstallment("First");
+              setAmount("18000");
+            } else if (!user.sinstall) {
+              setInstallment("Second");
+              setInstallName("sinstall");
+              setAmount("8000");
+            } else if (!user.tinstall) {
+              setInstallment("Third");
+              setInstallName("tinstall");
+              setAmount("7200");
+            } else {
+              setFeeText(false);
+              setFees(true);
+            }
           } else if (application.course.include("BAF")) {
-            setAmount("hello");
-            console.log(amount);
+            if (!user.finstall) {
+              setInstallName("finstall");
+              setInstallment("First");
+              setAmount("13000");
+            } else if (!user.sinstall) {
+              setInstallName("sinstall");
+              setInstallment("Second");
+              setAmount("8760");
+            } else if (!user.tinstall) {
+              setInstallment("Third");
+              setInstallName("tinstall");
+              setAmount("5340");
+            } else {
+              setFeeText(false);
+              setFees(true);
+            }
           }
           setPay(true);
           setTheme("success");
@@ -62,12 +136,7 @@ function Status() {
       }
     };
     fetch();
-  }, [amount, user._id]);
-  useEffect(() => {
-    if (user.fees) {
-      setFees(true);
-    }
-  }, [setFees, user.fees]);
+  }, [amount, user.finstall, user.sinstall, user.tinstall, user._id]);
   const initPayment = (data) => {
     const options = {
       key: "rzp_test_Eq3gnPcqCuq0H8",
@@ -83,7 +152,8 @@ function Status() {
           const { data } = await axios.post(verifyUrl, response);
           console.log(data);
           const payment = await axios.put(
-            `http://localhost:5000/user/fees/${user._id}`
+            `http://localhost:5000/user/install/${user._id}`,
+            { install: installName }
           );
           console.log(payment.data);
           setFees(true);
@@ -115,7 +185,13 @@ function Status() {
       <Alert severity={theme}>
         Your appliation is {app ? app.status : "pending"}
       </Alert>
-      {feeText && <h1>{app ? `Fees for 1st Year ${amount}rs` : text}</h1>}
+      {feeText && (
+        <h1>
+          {app
+            ? `Your Amount to pay is ${amount}rs for ${installment} installment`
+            : text}
+        </h1>
+      )}
       {pay && !fees && (
         <>
           <button onClick={handlePayment} className="buy_btn">

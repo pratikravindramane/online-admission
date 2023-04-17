@@ -139,12 +139,23 @@ export const payment = async (req, res) => {
 };
 
 // fees
-export const fees = async (req, res) => {
+export const installment = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, {
-      $set: { fees: true },
-    });
-    res.send({ msg: "fees paid" });
+    const install = req.body.install;
+    console.log(install);
+    const user = await User.findById(req.params.id);
+    if (!user.finstall) {
+      user.finstall = true;
+    } else if (!user.sinstall) {
+      user.sinstall = true;
+    } else if (!user.tinstall) {
+      user.tinstall = true;
+    } else {
+      user;
+    }
+    await user.save();
+    console.log(user);
+    res.send({ msg: user });
   } catch (error) {
     res.send({ error: error });
   }

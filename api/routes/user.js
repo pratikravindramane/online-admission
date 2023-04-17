@@ -3,11 +3,11 @@ import express, { application } from "express";
 import {
   addApplication,
   document,
-  fees,
   getApplication,
   getNotice,
   getStatus,
   getUser,
+  installment,
   payment,
 } from "../controllers/user.js";
 import { User } from "../models/user.js";
@@ -104,6 +104,18 @@ router.get("document/:id", async (req, res) => {
 //     console.log(error);
 //   }
 // });
+router.get("/getall", async (req, res) => {
+  try {
+    const users = await User.find({});
+    users.forEach(async (element) => {
+      element.finstall = false;
+      element.sinstall = false;
+      element.tinstall = false;
+      await element.save();
+    });
+    res.send(users);
+  } catch (error) {}
+});
 router.post("/add-application", upload.single("profile"), addApplication);
 router.get("/application/:id", getApplication);
 router.post("/document/:id", upload.single("doc"), document);
@@ -111,5 +123,5 @@ router.get("/:id", getUser);
 router.get("/notice", getNotice);
 router.get("/status/:id", getStatus);
 router.get("/payment/:id", payment);
-router.put("/fees/:id", fees);
+router.put("/install/:id", installment);
 export default router;
